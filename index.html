@@ -42,7 +42,7 @@
 const KEY='ai-pack-hunter-opportunities-v2', GKEY='ai-pack-hunter-grails-v1';
 const $=id=>document.getElementById(id);
 let items=[],grails=[];try{const saved=localStorage.getItem(KEY)||localStorage.getItem('ai-pack-hunter-opportunities-v1');items=JSON.parse(saved||'[]');items=items.map(x=>({...x,id:x.id||crypto.randomUUID(),checks:x.checks||{source:false,terms:false,cost:false,expiry:false},state:x.state||'Saved'}));if(!localStorage.getItem(KEY)&&items.length)localStorage.setItem(KEY,JSON.stringify(items))}catch{}try{grails=JSON.parse(localStorage.getItem(GKEY)||'[]')}catch{}
-const esc=s=>String(s??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[ch]));const safeUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'||u.protocol==='http:'?u.href:''}catch{return ''}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>ch==="&"?"&amp;":ch==="<"?"&lt;":ch===">"?"&gt;":ch==='"'?"&quot;":"&#39;");const safeUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'||u.protocol==='http:'?u.href:''}catch{return ''}};
 function persist(){localStorage.setItem(KEY,JSON.stringify(items));renderAll()}
 function persistG(){localStorage.setItem(GKEY,JSON.stringify(grails));renderAll()}
 function verified(x){return !!(x.checks&&x.checks.source&&x.checks.terms&&x.checks.cost&&x.checks.expiry&&safeUrl(x.url))}
