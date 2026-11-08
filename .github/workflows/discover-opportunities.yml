@@ -1,6 +1,10 @@
 name: Discover TCG pack opportunities
 
 on:
+  push:
+    paths:
+      - 'scripts/discover_opportunities.py'
+      - '.github/workflows/discover-opportunities.yml'
   schedule:
     - cron: "23 15 * * *"
   workflow_dispatch:
