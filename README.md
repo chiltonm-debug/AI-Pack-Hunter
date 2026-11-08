@@ -4,7 +4,7 @@ A mobile-friendly, $0-budget starter web app for tracking Pokémon and One Piece
 
 ## Current features
 - Free Pack Finder: add and filter free or promotional opportunities.
-- Official-source discovery board: links to official Pokémon and One Piece news, event, and reward pages, plus a manually reviewed lead.
+- Discover tab: curated official sources plus an automatically refreshed list of possible promotion/reward announcements.
 - Opportunity Scanner: search and triage saved entries; it does not crawl the web automatically.
 - Pack Tracker: record saved, reviewed, claimed, or expired status.
 - Grail Watchlist: track target cards, sets, conditions, and target prices.
@@ -18,7 +18,7 @@ A mobile-friendly, $0-budget starter web app for tracking Pokémon and One Piece
 - Opportunity and grail data is stored locally in the browser using localStorage.
 
 ## Discovery source notes
-The Discover tab is a curated source directory, not a live feed or automated crawler. It currently links to:
+The Discover tab combines a curated source directory with a daily scheduled discovery workflow. The GitHub Actions workflow searches Google News RSS for Pokémon and One Piece TCG promotion/reward terms, then keeps only results whose publisher metadata matches an allowlisted official domain. It does not crawl publisher pages, log in, claim offers, open packs, or buy anything. Results are candidate leads only; every result is marked for manual verification and its cost remains unknown until checked. Google News indexing is incomplete, so this is a discovery aid rather than a guarantee that every promotion will be found. GitHub Actions scheduled runs may be delayed or disabled by repository inactivity; the workflow can also be run manually from the Actions tab.\n\nThe Discover tab also links to these official sources:
 - Pokémon League rewards: https://play.pokemon.com/en-us/rewards/
 - Pokémon TCG Live announcements: https://community.pokemon.com/en-us/categories/tcg-live-news-announcements
 - One Piece Card Game official site and events: https://en.onepiece-cardgame.com/
