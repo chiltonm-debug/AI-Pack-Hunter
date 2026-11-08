@@ -70,7 +70,7 @@ def main():
     }
     Path("data").mkdir(exist_ok=True)
     Path("data/discoveries.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {len(output['items'])} official-domain candidate leads.")
+    print(f"Wrote {len(output['items'])} unverified official-domain candidate leads.")
 
 if __name__ == "__main__":
     main()
