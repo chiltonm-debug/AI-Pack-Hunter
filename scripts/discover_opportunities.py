@@ -4,7 +4,8 @@ Only retain RSS results whose publisher metadata matches an allowlisted official
 No target-site crawling, login, claims, or purchases are performed.
 """
 import json, re, time, urllib.parse, urllib.request, xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 QUERIES = [
@@ -43,6 +44,14 @@ def main():
                 link = (item.findtext("link") or "").strip()
                 pub = (item.findtext("pubDate") or "").strip()
                 source_el = item.find("source")
+                try:
+                    published_at = parsedate_to_datetime(pub)
+                    if published_at.tzinfo is None:
+                        published_at = published_at.replace(tzinfo=timezone.utc)
+                    if datetime.now(timezone.utc) - published_at > timedelta(days=60):
+                        continue
+                except Exception:
+                    continue
                 source_name = source_el.text.strip() if source_el is not None and source_el.text else "News result"
                 text = title + " " + description
                 if not title or not link or not TERMS.search(text) or not TCG.search(text) or EXCLUDE.search(title):
@@ -65,7 +74,7 @@ def main():
             print(f"Feed query failed for {game}: {exc}")
     output = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "method": "Google News RSS discovery; publisher metadata must match allowlisted official domains; publisher pages are not crawled",
+        "method": "Google News RSS discovery, limited to items published in the last 60 days; publisher metadata must match allowlisted official domains; publisher pages are not crawled",
         "items": sorted(found.values(), key=lambda x: x.get("published", ""), reverse=True)[:40],
     }
     Path("data").mkdir(exist_ok=True)
