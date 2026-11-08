@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10131d">
+<title>AI Pack Hunter</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1018;--panel:#171c29;--panel2:#202738;--line:#30394d;--text:#f3f5fb;--muted:#a5afc3;--gold:#f4c66a;--green:#75d6a1;--red:#ff8585}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#24213a 0,transparent 32%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1120px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.mark{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#f4c66a,#e68c52);display:grid;place-items:center;color:#17131a;font-size:25px;font-weight:900}.brand h1{font-size:23px;line-height:1.1;margin:0}.brand p{color:var(--muted);margin:4px 0 0;font-size:12px}.pill{border:1px solid #3a465d;background:#1c2634;color:var(--green);border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700}
+.hero{padding:25px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(120deg,#20283a,#191b2b);margin-bottom:18px}.hero h2{font-size:25px;margin:0 0 7px}.hero p{color:var(--muted);margin:0;max-width:720px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:5px}.stat .safe{color:var(--green)}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.card h3{margin:0 0 13px;font-size:17px}.muted{color:var(--muted)}label{display:block;color:var(--muted);font-size:12px;margin:11px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:#101521;color:var(--text);font:inherit}button{border:0;border-radius:10px;padding:11px 15px;background:var(--gold);color:#211a11;font-weight:800;cursor:pointer}button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}button.danger{background:#42252b;color:#ffdada;border:1px solid #75404a}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.row{display:flex;gap:10px}.row>*{flex:1}.notice{padding:12px 14px;border:1px solid #66552f;background:#2b2519;border-radius:12px;color:#f3d99f;font-size:13px;margin-top:14px}.listing{border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:10px;background:#121825}.listing-head{display:flex;justify-content:space-between;gap:10px;align-items:start}.listing strong{display:block}.tag{font-size:11px;color:var(--gold);border:1px solid #66552f;border-radius:99px;padding:3px 8px;white-space:nowrap}.listing p{margin:7px 0;color:var(--muted);font-size:13px}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}.fine{font-size:12px;color:var(--muted);margin-top:20px}
+@media(max-width:760px){.wrap{padding:16px}.layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero h2{font-size:21px}}@media(max-width:420px){.stats{grid-template-columns:1fr}.row{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="mark">✦</div><div><h1>AI Pack Hunter</h1><p>Find opportunities. Keep control. Chase the grail.</p></div></div><span class="pill">● $0 SPENDING MODE</span></header>
+<section class="hero"><h2>Your pack-hunting command center</h2><p>Track free and promotional Pokémon and One Piece digital pack opportunities in one place. Add listings you find, compare the details, and keep every action under your control.</p></section>
+<section class="stats">
+<div class="stat"><small>Daily spending limit</small><strong class="safe">$0.00</strong></div>
+<div class="stat"><small>Tracked opportunities</small><strong id="total">0</strong></div>
+<div class="stat"><small>Approval required</small><strong>Always</strong></div>
+</section>
+<div class="layout">
+<section class="card"><h3>＋ Add a pack opportunity</h3>
+<form id="packForm">
+<label for="name">Pack or promotion name</label><input id="name" required maxlength="90" placeholder="e.g. Free promotional pack">
+<div class="row"><div><label for="game">Trading card game</label><select id="game"><option>Pokémon</option><option>One Piece</option><option>Other</option></select></div><div><label for="platform">Platform</label><input id="platform" required maxlength="50" placeholder="Platform name"></div></div>
+<div class="row"><div><label for="cost">Cost (USD)</label><input id="cost" type="number" min="0" step=".01" value="0" required></div><div><label for="kind">Opportunity type</label><select id="kind"><option>Free</option><option>Promotional</option><option>Paid (blocked)</option></select></div></div>
+<label for="url">Official pack or promotion link</label><input id="url" type="url" placeholder="https://">
+<label for="notes">Notes (expiry, requirements, pull-rate source)</label><textarea id="notes" rows="2" maxlength="500" placeholder="Add details you have verified"></textarea>
+<div class="actions"><button type="submit">Save opportunity</button></div></form>
+<div class="notice"><strong>Safety lock:</strong> This starter version never buys or opens packs. Paid listings are flagged and cannot be approved. Verify each offer and the platform's rules yourself.</div>
+</section>
+<section class="card"><h3>◎ Your tracked opportunities</h3><p class="muted" style="font-size:13px;margin-top:-7px">Saved in this browser on this device.</p><div id="list" class="empty">No opportunities yet. Add a free offer to get started.</div></section>
+</div>
+<p class="fine">Starter build · No paid APIs · No automated pack opening · No purchases · Data stays in this browser. This is a tracking tool, not a guarantee that an offer is valid or available.</p>
+</div>
+<script>
+const KEY='ai-pack-hunter-opportunities-v1';
+let items=[];try{items=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{items=[]}
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem(KEY,JSON.stringify(items));render()}
+function render(){
+ $('total').textContent=items.length;
+ const list=$('list');list.className=items.length?'':'empty';
+ if(!items.length){list.textContent='No opportunities yet. Add a free offer to get started.';return}
+ list.innerHTML='';
+ items.forEach((x,i)=>{
+  const el=document.createElement('article');el.className='listing';
+  const head=document.createElement('div');head.className='listing-head';
+  const title=document.createElement('div');const strong=document.createElement('strong');strong.textContent=x.name;const meta=document.createElement('span');meta.className='muted';meta.textContent=x.game+' · '+x.platform;title.append(strong,meta);
+  const tag=document.createElement('span');tag.className='tag';tag.textContent=x.cost>0||x.kind==='Paid (blocked)'?'PAID — BLOCKED':x.kind.toUpperCase();head.append(title,tag);el.append(head);
+  const desc=document.createElement('p');desc.textContent='Cost: $'+Number(x.cost).toFixed(2)+(x.notes?' · '+x.notes:'');el.append(desc);
+  if(x.url){const a=document.createElement('a');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Open offer page ↗';a.style.color='#f4c66a';el.append(a)}
+  const controls=document.createElement('div');controls.className='actions';
+  if(x.cost===0&&x.kind!=='Paid (blocked)'){const approve=document.createElement('button');approve.className='secondary';approve.textContent=x.approved?'Approval noted':'Mark reviewed';approve.disabled=!!x.approved;approve.onclick=()=>{items[i].approved=true;save()};controls.append(approve)}
+  const remove=document.createElement('button');remove.className='danger';remove.textContent='Remove';remove.onclick=()=>{items.splice(i,1);save()};controls.append(remove);el.append(controls);list.append(el);
+ });
+}
+$('packForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const cost=Number($('cost').value);
+ if(!Number.isFinite(cost)||cost<0){alert('Enter a valid cost.');return}
+ const item={name:$('name').value.trim(),game:$('game').value,platform:$('platform').value.trim(),cost,kind:$('kind').value,url:$('url').value.trim(),notes:$('notes').value.trim(),approved:false};
+ if(!item.name||!item.platform)return;
+ items.unshift(item);save();e.target.reset();$('cost').value='0';
+});
+render();
+</script>
+</body></html>
