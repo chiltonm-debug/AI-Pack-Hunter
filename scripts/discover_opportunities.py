@@ -17,7 +17,7 @@ ALLOWED = {
 }
 TERMS = re.compile(r"free|giveaway|give away|prize|reward|promotional|promo|code card|campaign|present|プレゼント|キャンペーン|配布|無料", re.I)
 TCG = re.compile(r"pokemon|pokémon|ポケモンカード|one piece|ワンピースカード|card game|tcg", re.I)
-EXCLUDE = re.compile(r"pre.?order|release date|available now|buy now|price|booster.*(発売|release)|new product", re.I)
+EXCLUDE = re.compile(r"pre.?order|release date|available now|buy now|price|new product", re.I)
 UA = "AI-Pack-Hunter-Opportunity-Discovery/1.0 (+https://github.com/chiltonm-debug/AI-Pack-Hunter)"
 
 def fetch(url):
