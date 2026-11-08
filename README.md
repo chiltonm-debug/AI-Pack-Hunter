@@ -26,6 +26,24 @@ The Discover tab combines a curated source directory with a daily scheduled disc
 
 The current Pokémon League Prize Pack lead is a physical promotional reward that may be earned by participating in a local League. Distribution varies and availability is limited. Confirm that the event has no entry fee and that rewards are available before treating it as a $0 offer. No current free One Piece pack offer has been confirmed in the source review.
 
+## Revenue Center (affiliate monetization milestone 1)
+
+Open `revenue.html` from the main dashboard's **Revenue Center** tab. It provides:
+- Affiliate partner pipeline with application/approval status, commission notes, payout notes, and partner dashboard links.
+- Campaign builder that adds UTM tags to an approved affiliate tracking URL.
+- Manual sales and commission ledger with pending, approved, paid, and reversed statuses.
+- CSV export of the manually recorded sales ledger.
+
+**Important limitations:** this is a static, browser-only tool. Records are stored in localStorage on the current device. It does not submit affiliate applications, create affiliate accounts, track public visitors or clicks across the site, verify conversions, connect to affiliate network APIs, or initiate payouts. Merchant/network dashboards remain the source of truth. Do not mark a partner approved until approval is confirmed and a tracking URL is issued. UTM parameters do not replace an affiliate network's tracking ID. Keep customer personal information and account credentials out of the app.
+
+## Monetization operating rules
+1. Apply only to programs that accept the publisher's actual traffic type, location, and promotional methods.
+2. Publish only partner-issued tracking links after approval.
+3. Disclose affiliate relationships clearly and conspicuously near recommendations and links.
+4. Verify product availability, total delivered price, seller legitimacy, and deal expiry before publication.
+5. Never fabricate discounts, inventory, reviews, or price history.
+6. Reconcile recorded orders and commissions against the affiliate network dashboard; commissions can be reversed and payout thresholds/timing vary.
+
 ## Run locally
 Open `index.html` in a modern browser. No build tools, API keys, subscriptions, or server are required.
 
