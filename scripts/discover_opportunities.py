@@ -25,15 +25,9 @@ def fetch(url):
     with urllib.request.urlopen(req, timeout=25) as response:
         return response.read(), response.geturl()
 
-def official_url(url):
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="GET")
-        with urllib.request.urlopen(req, timeout=20) as response:
-            final = response.geturl()
-        host = (urllib.parse.urlparse(final).hostname or "").lower()
-        return final if any(host == d or host.endswith("." + d) for d in ALLOWED) else ""
-    except Exception:
-        return ""
+def is_official_source(source_url):
+    host = (urllib.parse.urlparse(source_url).hostname or "").lower()
+    return any(host == d or host.endswith("." + d) for d in ALLOWED)
 
 def main():
     found = {}
@@ -53,13 +47,14 @@ def main():
                 text = title + " " + description
                 if not title or not link or not TERMS.search(text) or not TCG.search(text) or EXCLUDE.search(title):
                     continue
-                resolved = official_url(link)
-                if not resolved:
+                source_url = source_el.attrib.get("url", "") if source_el is not None else ""
+                if not is_official_source(source_url):
                     continue
-                key = resolved.split("?")[0]
+                # Keep the RSS redirect link; do not fetch or crawl the publisher page.
+                key = link
                 found[key] = {
-                    "id": key, "game": game, "title": title, "url": resolved,
-                    "source": source_name, "published": pub,
+                    "id": key, "game": game, "title": title, "url": link,
+                    "source": source_name, "sourceUrl": source_url, "published": pub,
                     "summary": description[:360],
                     "status": "Needs manual verification",
                     "cost": "Unknown", "confirmedFree": False,
@@ -70,7 +65,7 @@ def main():
             print(f"Feed query failed for {game}: {exc}")
     output = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "method": "Google News RSS discovery; final links restricted to allowlisted official publisher domains",
+        "method": "Google News RSS discovery; publisher metadata must match allowlisted official domains; publisher pages are not crawled",
         "items": sorted(found.values(), key=lambda x: x.get("published", ""), reverse=True)[:40],
     }
     Path("data").mkdir(exist_ok=True)
