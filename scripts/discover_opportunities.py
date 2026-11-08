@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build conservative, unverified TCG promotion leads from Google News RSS.
-Only retain results whose final article URL is on an allowlisted official domain.
+Only retain RSS results whose publisher metadata matches an allowlisted official domain.
 No target-site crawling, login, claims, or purchases are performed.
 """
 import json, re, time, urllib.parse, urllib.request, xml.etree.ElementTree as ET
