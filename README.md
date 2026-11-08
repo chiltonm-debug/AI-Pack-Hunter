@@ -1,14 +1,30 @@
 # AI Pack Hunter
 
-A mobile-friendly, zero-cost starter web app for tracking Pokémon and One Piece digital pack opportunities.
+A mobile-friendly, $0-budget starter web app for tracking Pokémon and One Piece pack opportunities.
+
+## Current features
+- Free Pack Finder: add and filter free or promotional opportunities.
+- Official-source discovery board: links to official Pokémon and One Piece news, event, and reward pages, plus a manually reviewed lead.
+- Opportunity Scanner: search and triage saved entries; it does not crawl the web automatically.
+- Pack Tracker: record saved, reviewed, claimed, or expired status.
+- Grail Watchlist: track target cards, sets, conditions, and target prices.
 
 ## Current safety rules
 - Daily spending limit is $0.
 - No purchases are made.
 - No packs are opened or automated.
-- Paid opportunities are visibly blocked from the review/approval action.
-- Users must verify offers and platform rules themselves.
-- Opportunity data is stored locally in the browser using localStorage.
+- Paid opportunities are blocked from review/approval actions.
+- Users must verify offer terms, total cost, eligibility, and platform rules themselves.
+- Opportunity and grail data is stored locally in the browser using localStorage.
+
+## Discovery source notes
+The Discover tab is a curated source directory, not a live feed or automated crawler. It currently links to:
+- Pokémon League rewards: https://play.pokemon.com/en-us/rewards/
+- Pokémon TCG Live announcements: https://community.pokemon.com/en-us/categories/tcg-live-news-announcements
+- One Piece Card Game official site and events: https://en.onepiece-cardgame.com/
+- Bandai Namco Amusement America One Piece official shop news: https://shop.bandainamco-am.com/onepiececardgame/
+
+The current Pokémon League Prize Pack lead is a physical promotional reward that may be earned by participating in a local League. Distribution varies and availability is limited. Confirm that the event has no entry fee and that rewards are available before treating it as a $0 offer. No current free One Piece pack offer has been confirmed in the source review.
 
 ## Run locally
 Open `index.html` in a modern browser. No build tools, API keys, subscriptions, or server are required.
@@ -17,13 +33,13 @@ Open `index.html` in a modern browser. No build tools, API keys, subscriptions, 
 1. In this repository, open **Settings → Pages**.
 2. Under **Build and deployment**, choose **Deploy from a branch**.
 3. Choose branch `main` and folder `/(root)`, then save.
-4. Wait for GitHub Pages to publish the site. The Pages URL will appear in Settings → Pages.
+4. Wait for GitHub Pages to publish the site. The Pages URL appears in Settings → Pages.
 
-GitHub Pages availability and terms depend on repository/account settings. This app is currently a static prototype and is not a production pack-opening bot.
+GitHub Pages availability and terms depend on repository/account settings. This app is a static prototype, not a production pack-opening bot.
 
-## Roadmap
-- Add verified free-offer sources and last-checked timestamps.
+## Next development steps
+- Evaluate permitted RSS feeds or official APIs before implementing automated refresh.
+- Add source last-checked dates and stale-source warnings.
 - Add card checklist and collection tracking.
-- Add published pull-rate and card-price references where permitted.
-- Consider official APIs only after checking their terms and cost.
-- Keep any future opening action manual and platform-compliant.
+- Add published pull-rate and card-price references only where their terms permit.
+- Keep all future opening actions manual and platform-compliant.
