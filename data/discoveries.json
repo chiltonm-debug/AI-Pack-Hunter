@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T16:31:02.219001+00:00",
+  "generatedAt": "2026-11-25T16:30:49.172058+00:00",
   "method": "Google News RSS discovery, limited to items published in the last 60 days; publisher metadata must match allowlisted official domains; publisher pages are not crawled",
   "items": [
     {
@@ -9,7 +9,7 @@
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPOVVZTnVqckZuRnFQbjlpQmlPV2FpdjRNZ3cyQ0FBSG1zUnlvTllORWNtUXRGdFFZV3RUT01MZU1oNWh3Q2dIai1jWF81YVNLdXhsaEdmWWlwMzRKWnFrNFZSVUhpTE01UzRHb21pRjRlX180N0pRMzlVaEN5YTNBOXB4SWFrdGFCTWprYnJYNURKZ0w3dzVORzBKdDRJaGFwNHZSdWl0V2Jsb1Jla0llLWdMOTFTQ1U?oc=5",
       "source": "Pokemon.com",
       "sourceUrl": "https://www.pokemon.com",
-      "published": "Mon, 16 Nov 2026 16:04:53 GMT",
+      "published": "Mon, 16 Nov 2026 08:00:00 GMT",
       "summary": "Tune In to the 2027 Latin America International Championships to Get Digital Rewards &nbsp;&nbsp; Pokemon.com",
       "status": "Needs manual verification",
       "cost": "Unknown",
